@@ -17,7 +17,7 @@ public class MainPage {
         PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
-    public void selectMerket() {
+    public void selectMarket() {
         Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 10, 1000);
         wait.until(ExpectedConditions.visibilityOf(market)).click();
     }

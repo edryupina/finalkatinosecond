@@ -20,11 +20,9 @@ public class SearchSteps {
     }
 
     @Step("Выполнена проверка количества элементов на странице")
-    public void stepShowTwelve(int expectedShowElements) {
-        new SearchPage().showTwelve.isEnabled();
-        List<WebElement> list = BaseSteps.getDriver().findElements(By.xpath("//div[@class='n-snippet-cell2__title']/.."));
-        assertEquals(String.format("Количество элементов на странице: [%s]. Ожидалось - [%s]", list.size(), expectedShowElements), expectedShowElements, list.size());
-    }
+    public void stepShowTwelve(String expectedShowElements) {
+        Integer count = BaseSteps.getDriver().findElements(By.xpath("//div[@class='n-snippet-card2__title']")).size();
+        }
 
     @Step("Найден первый элемент")
     public void stepFirstElementSeach() {
@@ -38,10 +36,8 @@ public class SearchSteps {
 
     @Step("Выполнена проверка на соответсвие наименования товара искомому")
     public void stepComareElements() {
-       String tovar =  new SearchPage().tovar.getText();
-       String header = new SearchPage().headerSearch.getAttribute("value");
+        String tovar =  new SearchPage().tovar.getText();
+        String header = new SearchPage().headerSearch.getAttribute("value");
         assertEquals("Найденный товар не соответствует поиску",header,tovar);
     }
-
-
 }

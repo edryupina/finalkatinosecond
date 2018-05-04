@@ -21,7 +21,7 @@ public class AllureReporter extends ru.yandex.qatools.allure.cucumberjvm.AllureR
     }
 
 
-    @Attachment(type = "image/png", value = "Скриншот при ошибке")
+    @Attachment(type = "image/png", value = "Скриншот ошибки")
     public byte[] takeScreenshot() {
         return ((TakesScreenshot) BaseSteps.getDriver()).getScreenshotAs(OutputType.BYTES);
     }

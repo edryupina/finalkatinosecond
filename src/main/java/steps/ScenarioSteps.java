@@ -3,6 +3,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class ScenarioSteps {
+
     MainSteps mainSteps = new MainSteps();
     MarketSteps marketSteps = new MarketSteps();
     SearchSteps searchSteps = new SearchSteps();
@@ -13,9 +14,7 @@ public class ScenarioSteps {
     }
 
     @Then("Выбран раздел - Электроника")
-    public void stepSelectElectronic() {
-        marketSteps.stepSelectElectronic();
-    }
+    public void stepSelectElectronic() {marketSteps.stepSelectElectronic();    }
 
     @Then("Выбран раздел - Наушники")
     public void stepSelectTV() {
@@ -32,9 +31,9 @@ public class ScenarioSteps {
         searchSteps.stepClickButton();
     }
 
-    @When("Выполнена проверка количества элементов на странице")
-    public void checkTitle() {
-        searchSteps.stepShowTwelve(12);
+    @When("^Выполнена проверка количества элементов на странице - \"(.+)\"$")
+    public void checkTitle(String showElement) {
+        searchSteps.stepShowTwelve(showElement);
     }
 
     @Then("Найден первый элемент из списка")
@@ -51,5 +50,4 @@ public class ScenarioSteps {
     public void stepComareElements() {
         searchSteps.stepComareElements();
     }
-
 }

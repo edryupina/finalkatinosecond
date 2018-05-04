@@ -10,19 +10,27 @@ import steps.BaseSteps;
 
 public class SearchPage {
 
+    //поправила
+    @FindBy(xpath = "//a[text()='Перейти ко всем фильтрам']")
+    WebElement filters;
+
     @FindBy(name = "glf-pricefrom-var")
     WebElement priceFrom;
 
     @FindBy(xpath = "//label[text()='Beats']")
     WebElement beats;
 
-    @FindBy(xpath = "//button[@class='button button_action_n-filter-apply button_size_s button_pseudo_yes button_theme_pseudo i-bem button_js_inited']")
+    // поправила и заменила по-другому
+  //  @FindBy(xpath = "//button[@class='button button_action_n-filter-apply button_size_s button_pseudo_yes button_theme_pseudo i-bem button_js_inited']")
+ //   WebElement buttonApply;
+
+    @FindBy(xpath = "//div[@class='layout layout_type_maya']//a/span[contains(text(), 'Показать подходящие')]/parent::a")
     WebElement buttonApply;
 
-    @FindBy(xpath = "//div[@class='n-snippet-cell2__title']")
+    @FindBy(xpath = "//button/span[text()='Показывать по 12']")
     public WebElement showTwelve;
 
-    @FindBy(xpath = "(//div[@class='n-snippet-cell2__title'])[1]")
+    @FindBy(xpath = "(//div[@class='n-snippet-card2__title'])[1]")
     public WebElement firstElement;
 
     @FindBy(xpath = "//input[@id='header-search']")
@@ -31,7 +39,7 @@ public class SearchPage {
     @FindBy(xpath = "//button/span[text()='Найти']/..")
     WebElement buttonSearch;
 
-    @FindBy(xpath = "(//div[@class='n-snippet-cell2__title'])[1]")
+    @FindBy(xpath = "//h1[@class='title title_size_28 title_bold_yes']")
     public WebElement tovar;
 
     public SearchPage() {
@@ -40,6 +48,7 @@ public class SearchPage {
 
     public void filterApply() {
         Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 10, 1000);
+        wait.until(ExpectedConditions.visibilityOf(filters)).click();
         wait.until(ExpectedConditions.visibilityOf(priceFrom)).sendKeys("5000");
         wait.until(ExpectedConditions.visibilityOf(beats)).click();
     }
@@ -49,14 +58,16 @@ public class SearchPage {
         wait.until(ExpectedConditions.visibilityOf(buttonApply)).click();
     }
 
-    public void showTwelve(String expectedShowElements) {
+    public void showTwelve() {
         Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 10, 1000);
-        wait.until(ExpectedConditions.visibilityOf(showTwelve)).isEnabled();
+        wait.until(ExpectedConditions.visibilityOf(showTwelve));
     }
 
     public void searchFirstElement() {
         Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 10, 1000);
-        wait.until(ExpectedConditions.visibilityOf(firstElement));
+        wait.until(ExpectedConditions.visibilityOf(firstElement)).getText();
+        headerSearch.sendKeys(firstElement.getText());
+        wait.until(ExpectedConditions.visibilityOf(buttonSearch)).click();
     }
 
     public void searchPasteSearchFirstElement() {

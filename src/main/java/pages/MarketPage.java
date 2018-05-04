@@ -19,6 +19,7 @@ public class MarketPage {
     public MarketPage() {
         PageFactory.initElements(BaseSteps.getDriver(), this);
     }
+
     public void selectElectronic() {
         Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 10, 1000);
         wait.until(ExpectedConditions.visibilityOf(electronics)).click();
